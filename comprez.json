@@ -1,0 +1,37 @@
+{
+    "name": "Comprez",
+    "dpf": {
+        "dpf_path": "../dep/",
+        "makefile_dep": [
+            "wstd.clrs"
+        ],
+        "enable_ui": true,
+        "enable_modgui": true,
+        "ui_size": {
+            "width": 400,
+            "height": 180
+        },
+        "midi_input": 0,
+        "midi_output": 0,
+        "maker": "AnClark Liu",
+        "version": "0, 1, 0",
+        "license": "GPL-3.0-or-later",
+        "homepage": "https://github.com/AnClark/Comprez",
+        "plugin_uri": "https://github.com/AnClark/Comprez",
+        "plugin_clap_id": "audio.anclark.comprez",
+        "plugin_formats": [
+            "lv2_sep",
+            "vst2",
+            "vst3",
+            "clap",
+            "jack"
+        ],
+        "lv2_info": "lv2:CompressorPlugin",
+        "vst3_info": "Fx|Dynamics",
+        "clap_info": [
+            "audio-effect",
+            "compressor",
+            "stereo"
+        ]
+    }
+}
