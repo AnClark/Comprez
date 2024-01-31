@@ -1,0 +1,24 @@
+[submodule "heavylib"]
+	path = dep/heavylib
+	url = https://github.com/Wasted-Audio/heavylib.git
+[submodule "DPF"]
+	path = dep/dpf
+	url = https://github.com/DISTRHO/DPF.git
+[submodule "DPF-Widgets"]
+	path = dep/dpf-widgets
+	url = https://github.com/Wasted-Audio/DPF-Widgets.git
+[submodule "dep/wstd.clrs"]
+	path = dep/wstd.clrs
+	url = https://github.com/Wasted-Audio/wstd.clrs.git
+[submodule "dep/hvcc"]
+	path = dep/hvcc
+	url = https://github.com/Wasted-Audio/hvcc.git
+[submodule "dep/heavylib"]
+	path = dep/heavylib
+	url = https://github.com/Wasted-Audio/heavylib.git
+[submodule "dep/dpf"]
+	path = dep/dpf
+	url = https://github.com/DISTRHO/DPF.git
+[submodule "dep/dpf-widgets"]
+	path = dep/dpf-widgets
+	url = https://github.com/Wasted-Audio/DPF-Widgets.git
