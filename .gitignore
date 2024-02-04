@@ -1,8 +1,9 @@
 # CMake build directories
 build*/**
 
-# clangd cache directory
+# clangd cache directory and files
 .cache/**
+compile_commands.json
 
 # Prerequisites
 *.d
