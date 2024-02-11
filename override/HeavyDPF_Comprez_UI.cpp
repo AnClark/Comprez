@@ -32,6 +32,7 @@ class ImGuiPluginUI : public UI
     bool fratio_range = false;
 
     bool fshow_about_window = false;
+    bool fshow_help_window = false;
 
     ResizeHandle fResizeHandle;
 
@@ -153,7 +154,7 @@ protected:
             fratio_range = true;
 
         ImGui::PushFont(titleBarFont);
-        if (!fshow_about_window && ImGui::Begin("Comprez", nullptr, ImGuiWindowFlags_MenuBar + ImGuiWindowFlags_NoResize + ImGuiWindowFlags_NoCollapse + ImGuiWindowFlags_NoTitleBar))
+        if (!fshow_about_window && !fshow_help_window && ImGui::Begin("Comprez", nullptr, ImGuiWindowFlags_MenuBar + ImGuiWindowFlags_NoResize + ImGuiWindowFlags_NoCollapse + ImGuiWindowFlags_NoTitleBar))
         {
             if (ImGui::BeginMenuBar())
             {
@@ -161,8 +162,28 @@ protected:
                 ImGui::PushStyleColor(ImGuiCol_ButtonHovered,  ColorBright(Amber, 1.0f));
                 ImGui::PushStyleColor(ImGuiCol_ButtonActive,  ColorBright(Amber, -20.0f));
 
+                constexpr auto TITLE_BUTTON_WIDTH = 100;
+                constexpr auto MAINMENU_BUTTON_WIDTH = 20;
+
+                ImGui::PushItemWidth(TITLE_BUTTON_WIDTH);
                 if (ImGui::Button("Comprez"))
                     fshow_about_window = !fshow_about_window;
+                ImGui::PopItemWidth();
+                ImGui::SameLine(0, DISTRHO_UI_DEFAULT_WIDTH - TITLE_BUTTON_WIDTH - MAINMENU_BUTTON_WIDTH - 20);
+
+                if (ImGui::BeginMenu("..."))
+                {
+                    ImGui::PushFont(defaultFont);   // Reset font size for menu
+
+                    //ImGui::Separator();
+                    if (ImGui::MenuItem("Help"))
+                        fshow_help_window = !fshow_help_window;
+                    if (ImGui::MenuItem("About Comprez"))
+                        fshow_about_window = !fshow_about_window;
+
+                    ImGui::EndMenu();
+                    ImGui::PopFont();
+                }
 
                 ImGui::PopStyleColor(3);
                 ImGui::EndMenuBar();
@@ -287,7 +308,7 @@ protected:
         ImGui::PopFont();
         ImGui::End();
 
-        if (fshow_about_window && ImGui::Begin("About Comprez", &fshow_about_window, ImGuiWindowFlags_NoResize + ImGuiWindowFlags_NoCollapse))
+        if (fshow_about_window && !fshow_help_window && ImGui::Begin("About Comprez", &fshow_about_window, ImGuiWindowFlags_NoResize + ImGuiWindowFlags_NoCollapse))
         {
             // TODO: Parse and show version and commit by Python script
             ImGui::Text("Comprez - v%d.%d.%d (commit %s)", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, GIT_COMMIT_ID);
@@ -307,6 +328,96 @@ protected:
             ImGui::SameLine(0, 20);
             if (ImGui::Button("  Official Website  "))
                 OsOpenInShell("https://github.com/AnClark/Comprez");
+        }
+        ImGui::End();
+
+        if (fshow_help_window && !fshow_about_window && ImGui::Begin("Comprez Help", &fshow_help_window, ImGuiWindowFlags_NoResize + ImGuiWindowFlags_NoCollapse))
+        {
+            // TODO: Parse and show version and commit by Python script
+            ImGui::Text("Comprez - v%d.%d.%d (commit %s)", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, GIT_COMMIT_ID);
+            ImGui::Text("Simple & High Performance Compressor Plugin");
+            //ImGui::Text(" ");
+
+            if (ImGui::CollapsingHeader("Introduction"))
+            {
+                ImGui::TextWrapped("Comprez is a simple but fast, versatile compressor plugin.");
+                ImGui::TextWrapped("It's ready to give you a special compressor experience you may never have before.");
+                ImGui::TextWrapped("Although there are only 4 controllers currently, it does not limit your creation. "
+                "Feel free to try out. You will meet your favorite compressor parameters, and enlight your works!");
+            }
+
+            if (ImGui::CollapsingHeader("Controllers"))
+            {
+                if (ImGui::TreeNode("Threshold"))
+                {
+                    ImGui::TextWrapped("Set the start point where to begin compressing.");
+                    ImGui::Dummy(ImVec2(0, 5));
+
+                    ImGui::Text("[Range]\n  0.0 ~ 200.0");
+                    ImGui::Text("  Smaller value means lower threshold.");
+                    ImGui::Dummy(ImVec2(0, 3));
+
+                    ImGui::Text("[Notice]");
+                    ImGui::TextWrapped("  In Comprez, threshold value is NOT a decibel value.");
+                    ImGui::Dummy(ImVec2(0, 3));
+
+                    ImGui::TreePop();
+                }
+
+                if (ImGui::TreeNode("Ratio & Range"))
+                {
+                    ImGui::TextWrapped("Set compressor ratio.");
+                    ImGui::TextWrapped("For better experience, ratio range is switchable via the \"Range\" switch.");
+                    ImGui::Dummy(ImVec2(0, 5));
+
+                    ImGui::Text("[Range]\n Up to 10:1 or 100:1");
+                    ImGui::Dummy(ImVec2(0, 5));
+
+                    ImGui::TreePop();
+                }
+
+                if (ImGui::TreeNode("Atk/Rel"))
+                {
+                    ImGui::TextWrapped("Set Attack/Release time, simutaneously.");
+                    ImGui::Dummy(ImVec2(0, 3));
+
+                    ImGui::TextWrapped("DSP engine uses ramp generator to handle envelope, so you cannot set Attack or Release time separately.");
+                    ImGui::TextWrapped("But this is our feature! Voice and sound are compressed tenderly, beyond your imagination.");
+                    ImGui::TextWrapped("By setting to Negative value, you will unlock Lo-Fi effect. "
+                    "Sound stucks and distorts, just like playing music from your ancient tape recorder, covered with decades of thick dust.");
+                    ImGui::Dummy(ImVec2(0, 5));
+
+                    ImGui::Text("[Range]\n -1000.0 ~ 1000.0 ms");
+                    ImGui::TextWrapped(" Positive value sets Attack/Release time as a common compressor.");
+                    ImGui::TextWrapped(" Negative value enables Lo-Fi effect.");
+                    ImGui::Dummy(ImVec2(0, 5));
+
+                    ImGui::TreePop();
+                }
+            }
+
+            if (ImGui::CollapsingHeader("Tips"))
+            {
+                ImGui::BulletText("Double-click a knob:\n  Reset parameter to default value.");
+                ImGui::BulletText("Dial knobs with Shift pressed:\n  Tune parameter accurately.");
+                ImGui::Dummy(ImVec2(0, 5));
+
+                ImGui::TextWrapped("NOTICE: Some DAWs (e.g. REAPER for Linux) may not respond to Shift key.");
+
+                ImGui::Dummy(ImVec2(0, 5));
+            }
+
+            ImGui::Separator();
+
+            if (ImGui::Button("    OK    "))
+                fshow_help_window = false;
+
+            ImGui::SameLine(0, 20);
+            if (ImGui::Button("  About Comprez  "))
+            {
+                fshow_about_window = true;
+                fshow_help_window = false;
+            }
         }
         ImGui::End();
     }
