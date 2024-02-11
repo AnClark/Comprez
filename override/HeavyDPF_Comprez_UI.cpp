@@ -292,14 +292,14 @@ protected:
             // TODO: Parse and show version and commit by Python script
             ImGui::Text("Comprez - v%d.%d.%d (commit %s)", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, GIT_COMMIT_ID);
             ImGui::Text("Simple & High Performance Compressor Plugin");
-            ImGui::Text("");
+            ImGui::Text(" ");
             ImGui::Text("Author:\n    AnClark Liu <clarklaw4701@qq.com>");
             ImGui::Text("DSP Engine:\n    Heavy Stereo Compressor by Joe White");
             ImGui::Text("Credits to:\n    Wasted Audio Team");
-            ImGui::Text("");
+            ImGui::Text(" ");
             ImGui::Text("License:\n    GNU GPLv3");
             ImGui::Text("VST Plugin Interface Technology by Steinberg");
-            ImGui::Text("");
+            ImGui::Text(" ");
 
             if (ImGui::Button("    OK    "))
                 fshow_about_window = false;
