@@ -140,13 +140,13 @@ protected:
         constexpr auto RATIO_MAX_VALUE_NARROW = 10.0f;
 
         auto ratiostep = (fratio_range) ? 1.0f : 0.1f;
-        auto thresholdstep = 1.0f;
+        auto thresholdstep = 0.1f;
         auto msstep = 2.0f;
 
         if (io.KeyShift)
         {
             ratiostep = (fratio_range) ? 0.1f : 0.01f;
-            thresholdstep = 0.1f;
+            thresholdstep = 0.01f;
             msstep = 1.0f;
         }
 
@@ -196,7 +196,7 @@ protected:
 
             ImGui::PushStyleColor(ImGuiCol_ButtonActive,    (ImVec4)ThresholdActive);
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered,   (ImVec4)ThresholdHovered);
-            if (ImGuiKnobs::Knob("Threshold", &fthreshold, 0.0f, 200.0f, thresholdstep, "%.1f", ImGuiKnobVariant_SteppedTick, hundred, ImGuiKnob_Flags, 11))
+            if (ImGuiKnobs::Knob("Threshold", &fthreshold, 0.0f, 100.0f, thresholdstep, "%.1f", ImGuiKnobVariant_SteppedTick, hundred, ImGuiKnob_Flags, 11))
             {
                 if (ImGui::IsItemActivated())
                 {
@@ -353,7 +353,7 @@ protected:
                     ImGui::TextWrapped("Set the start point where to begin compressing.");
                     ImGui::Dummy(ImVec2(0, 5));
 
-                    ImGui::Text("[Range]\n  0.0 ~ 200.0");
+                    ImGui::Text("[Range]\n  0.0 ~ 100.0");
                     ImGui::Text("  Smaller value means lower threshold.");
                     ImGui::Dummy(ImVec2(0, 3));
 

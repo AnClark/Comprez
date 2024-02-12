@@ -12,8 +12,8 @@
 #X text 252 333 // arg \$2: ratio;
 #X text 252 313 // arg \$1: threshold;
 #X text 251 354 // arg \$3: attack/release time (ms);
-#X obj 238 31 r Threshold @hv_param 0 200 70;
 #X obj 468 87 r Ratio @hv_param 1 100 1;
+#X obj 238 31 r Threshold @hv_param 0 100 70;
 #X connect 1 0 9 2;
 #X connect 2 0 1 0;
 #X connect 3 0 7 0;
@@ -25,5 +25,5 @@
 #X connect 8 0 5 0;
 #X connect 9 0 0 0;
 #X connect 9 1 0 1;
-#X connect 13 0 2 0;
-#X connect 14 0 3 0;
+#X connect 13 0 3 0;
+#X connect 14 0 2 0;
