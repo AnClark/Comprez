@@ -1,5 +1,7 @@
 # Comprez
 
+[![build](https://github.com/AnClark/Comprez/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/AnClark/Comprez/actions/workflows/build.yml)
+
 **Comprez is a simple but fast, versatile compressor plug-in.**
 
 It's ready to give you a special compressor experience you may never have before. Although there are only 4 controllers currently, it does not limit your creation. 
@@ -10,7 +12,7 @@ Feel free to try out. You will meet your favorite compressor parameters, and enl
 
 ## Features
 
-- High performance
+- **High performance**
   - Only 0.1~0.2% CPU usage on Intel Core 2 Duo P9500
 - Stereo input/output
 - Wide threshold and ratio
@@ -18,7 +20,7 @@ Feel free to try out. You will meet your favorite compressor parameters, and enl
 - Bundled Attack/Release time (set Attack/Release simultaneously)
   - DSP engine uses ramp generator to handle envelope, so you cannot set Attack or Release time separately.
   - But this is our feature! Voice and sound are compressed tenderly, beyond your imagination.
-- Extra Lo-Fi FX support
+- **Extra Lo-Fi FX support**
   - By setting `Atk/Rel` to negative value, you will unlock Lo-Fi effect.
   - Sound stucks and distorts, just like playing music from your ancient tape recorder, covered with decades of thick dust.
 
@@ -46,6 +48,9 @@ sudo python -m pip install virtualenv
 
 ```bash
 git clone https://github.com/AnClark/Comprez comprez --recursive
+
+# In case you forget "--recursive"
+cd comprez
 git submodule update --init --recursive
 ```
 
@@ -56,7 +61,7 @@ cd comprez
 make
 ```
 
-Built plugin files resides in `build/bin`.
+Built plugin files reside in `build/bin`.
 
 ### On Windows
 
@@ -68,7 +73,7 @@ Built plugin files resides in `build/bin`.
 
 - **Author:** [AnClark Liu](https://github.com/AnClark)
 - **DSP Engine:** [Heavy Stereo Compressor](https://github.com/Wasted-Audio/heavylib/blob/master/hv.compressor2~.pd) by Joe White
-- **Credits to:** [Wasted Audio](https://github.com/Wasted-Audio/) Team, for their powerful [Heavylib](https://github.com/Wasted-Audio/heavylib) and [HVCC](https://github.com/Wasted-Audio/hvcc), and inspirations of Comprez
+- **Credits to:** [Wasted Audio](https://github.com/Wasted-Audio/) Team, for their powerful [Heavylib](https://github.com/Wasted-Audio/heavylib) and [HVCC](https://github.com/Wasted-Audio/hvcc), and giving me inspirations of Comprez
 
 ## License
 
