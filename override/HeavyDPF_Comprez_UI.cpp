@@ -315,10 +315,10 @@ protected:
             ImGui::Text("Simple & High Performance Compressor Plugin");
             ImGui::Text(" ");
             ImGui::Text("Author:\n    AnClark Liu <clarklaw4701@qq.com>");
-            ImGui::Text("DSP Engine:\n    Heavy Stereo Compressor by Joe White");
+            ImGui::Text("DSP Engine:\n    Heavy Stereo Compressor by Joe White\n    (modified by AnClark Liu)");
             ImGui::Text("Credits to:\n    Wasted Audio Team");
             ImGui::Text(" ");
-            ImGui::Text("License:\n    GNU GPLv3");
+            ImGui::Text("License:\n    GNU General Public License Version 3");
             ImGui::Text("VST Plugin Interface Technology by Steinberg");
             ImGui::Text(" ");
 
@@ -343,7 +343,7 @@ protected:
                 ImGui::TextWrapped("Comprez is a simple but fast, versatile compressor plugin.");
                 ImGui::TextWrapped("It's ready to give you a special compressor experience you may never have before.");
                 ImGui::TextWrapped("Although there are only 4 controllers currently, it does not limit your creation. "
-                "Feel free to try out. You will meet your favorite compressor parameters, and enlight your works!");
+                "Feel free to try out. You will meet your favorite compressor parameters, and enlighten your works!");
             }
 
             if (ImGui::CollapsingHeader("Controllers"))
