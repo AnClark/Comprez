@@ -14,7 +14,7 @@
         "midi_input": 0,
         "midi_output": 0,
         "maker": "AnClark Liu",
-        "version": "0, 1, 0",
+        "version": "1, 0, 0",
         "license": "GPL-3.0-or-later",
         "homepage": "https://github.com/AnClark/Comprez",
         "plugin_uri": "https://github.com/AnClark/Comprez",
