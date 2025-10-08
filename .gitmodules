@@ -22,3 +22,6 @@
 [submodule "dep/dpf-widgets"]
 	path = dep/dpf-widgets
 	url = https://github.com/Wasted-Audio/DPF-Widgets.git
+[submodule "dep/arc-progress-bar"]
+	path = dep/arc-progress-bar
+	url = https://github.com/AnClark/ImGui_Arc_ProgressBar.git
